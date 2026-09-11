@@ -25,8 +25,8 @@
 
 | Distro Family | Format | Download |
 |:---:|:---:|:---:|
-| 🔵 **Arch · Manjaro · EndeavourOS · Garuda** | `pkg.tar.zst` | [![Arch](https://img.shields.io/badge/Download-pkg.tar.zst-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-g-0.7-1-x86_64.pkg.tar.zst) |
-| 🔴 **Fedora · openSUSE · RHEL · AlmaLinux** | `.rpm` | [![RPM](https://img.shields.io/badge/Download-.rpm-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-g-0.7-1.x86_64.rpm) |
+| 🔵 **Arch · Manjaro · EndeavourOS · Garuda** | `pkg.tar.zst` | [![Arch](https://img.shields.io/badge/Download-pkg.tar.zst-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-g-0.7-2-x86_64.pkg.tar.zst) |
+| 🔴 **Fedora · openSUSE · RHEL · AlmaLinux** | `.rpm` | [![RPM](https://img.shields.io/badge/Download-.rpm-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-g-0.7-2.x86_64.rpm) |
 | 🟠 **Debian · Ubuntu · Mint · Pop!_OS · Zorin** | `.deb` | [![DEB](https://img.shields.io/badge/Download-.deb-A81D33?style=for-the-badge&logo=debian&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-g_0.7_x86_64.deb) |
 | 🌍 **Any Linux (no install needed)** | `.AppImage` | [![AppImage](https://img.shields.io/badge/Download-AppImage-5C5C5C?style=for-the-badge&logo=linux&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.7-g/conky-manager-x86_64.AppImage) |
 
