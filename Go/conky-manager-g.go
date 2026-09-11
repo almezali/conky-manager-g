@@ -1,6 +1,12 @@
 // Conky Manager GTK - v0.7 (Go edition)
 // Universal Conky theme manager for Linux desktop environments.
 // GTK 3 UI follows the user's system theme (Adwaita, Breeze, Yaru, etc.).
+//
+// go mod init conky-manager-g
+// go get github.com/gotk3/gotk3@v0.6.4.2
+// go mod tidy
+// Build: go build -v -o conky-manager-g conky-manager-g.go
+// Run:   ./conky-manager-g
 package main
 
 import (
