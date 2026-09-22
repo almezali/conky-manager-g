@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/almezali/conky-manager-g/main/Screenshot_dark.png" width="80" alt="Conky Manager GTK Logo" style="border-radius:16px"/>
+<img width="512" height="495" alt="CM-512" src="https://github.com/user-attachments/assets/72840cdf-ee99-4321-8b5d-0371c3422b58" />
+
 
 # Conky Manager GTK
 
