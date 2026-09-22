@@ -6,11 +6,14 @@
 
 **A modern, lightweight Conky theme manager — beautiful, powerful, and built for every Linux desktop.**
 
-[![Version](https://img.shields.io/badge/version-0.7-5C6BC0?style=flat-square)](https://github.com/almezali/conky-manager-g/releases)
+[![Version](https://img.shields.io/badge/version-0.8-5C6BC0?style=flat-square)](https://github.com/almezali/conky-manager-g/releases)
 [![GTK](https://img.shields.io/badge/GTK-3.0-4CAF50?style=flat-square&logo=gtk)](https://gtk.org)
 [![Platform](https://img.shields.io/badge/Linux-x86__64-FCC624?style=flat-square&logo=linux&logoColor=black)](https://kernel.org)
 [![GitHub](https://img.shields.io/badge/GitHub-almezali-181717?style=flat-square&logo=github)](https://github.com/almezali/conky-manager-g)
 
+[![Latest Version](https://img.shields.io/github/v/release/almezali/conky-manager-g?style=for-the-badge&logo=github&logoColor=white&color=00ADD8)](https://github.com/almezali/conky-manager-g/releases/latest)
+[![Total Downloads](https://img.shields.io/github/downloads/almezali/conky-manager-g/total?style=for-the-badge&logo=github&logoColor=white&color=00ADD8)](https://github.com/almezali/conky-manager-g/releases)
+[![Stars](https://img.shields.io/github/stars/almezali/conky-manager-g?style=for-the-badge&logo=github&logoColor=white&color=00ADD8)](https://github.com/almezali/conky-manager-g/stargazers)
 ---
 
 ### Manage · Customize · Download · Autostart your Conky themes — no config files needed.
@@ -18,6 +21,19 @@
 </div>
 
 ---
+## ⚡ Quick Download — v0.8 | (Go edition)
+
+<div align="center">
+
+| Distro Family | Format | Download |
+|:---:|:---:|:---:|
+| 🔵 **Arch · Manjaro · EndeavourOS · Garuda** | `pkg.tar.zst` | [![Arch](https://img.shields.io/badge/Download-pkg.tar.zst-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.8/conky-manager-g-0.8-1-x86_64.pkg.tar.zst) |
+| 🔴 **Fedora · openSUSE · RHEL · AlmaLinux** | `.rpm` | [![RPM](https://img.shields.io/badge/Download-.rpm-EE0000?style=for-the-badge&logo=red-hat&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.8/conky-manager-g-0.8-1.x86_64.rpm) |
+| 🟠 **Debian · Ubuntu · Mint · Pop!_OS · Zorin** | `.deb` | [![DEB](https://img.shields.io/badge/Download-.deb-A81D33?style=for-the-badge&logo=debian&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.8/conky-manager-g_0.8_x86_64.deb) |
+| 🌍 **Any Linux (no install needed)** | `.AppImage` | [![AppImage](https://img.shields.io/badge/Download-AppImage-5C5C5C?style=for-the-badge&logo=linux&logoColor=white)](https://github.com/almezali/conky-manager-g/releases/download/0.8/conky-manager-x86_64.AppImage) |
+
+</div>
+
 
 ## ⚡ Quick Download — v0.7  | (Go edition)
 
