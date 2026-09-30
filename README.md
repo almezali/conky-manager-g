@@ -185,6 +185,24 @@ Automatically detects your DE and applies the correct window layering preset:
 
 ---
 
+## 📦 Debian / Ubuntu APT Repository
+
+Install from the project APT repository:
+
+```bash
+sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://almezali.github.io/conky-manager-g/apt.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/conky-manager-g.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/conky-manager-g.gpg] https://almezali.github.io/conky-manager-g stable main" | sudo tee /etc/apt/sources.list.d/conky-manager-g.list
+sudo apt update
+sudo apt install conky-manager-g
+```
+
+Future releases are published to this repository automatically, so normal `apt update` and `apt upgrade` will receive updates.
+
+> The APT repository currently provides the x86_64/amd64 package.
+
+---
+
 ## 🚀 Installation
 
 ### Prerequisites
