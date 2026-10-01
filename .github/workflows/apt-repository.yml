@@ -29,16 +29,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p site/pool/main
-
           if [ "${{ github.event_name }}" = "release" ]; then
             tag="${{ github.event.release.tag_name }}"
           else
             tag="$(gh release view --repo "${GITHUB_REPOSITORY}" --json tagName --jq '.tagName')"
           fi
-
           echo "Using release: $tag"
-          gh release download "$tag"             --repo "${GITHUB_REPOSITORY}"             --pattern '*.deb'             --dir site/pool/main
-
+          gh release download "$tag" --repo "${GITHUB_REPOSITORY}" --pattern '*.deb' --dir site/pool/main --clobber
           test -n "$(find site/pool/main -maxdepth 1 -type f -name '*.deb' -print -quit)"
           ls -lh site/pool/main/*.deb
 
@@ -47,19 +44,13 @@ jobs:
           APT_GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
         run: |
           set -euo pipefail
-          if [ -z "${APT_GPG_PRIVATE_KEY:-}" ]; then
-            echo "Missing repository secret: APT_GPG_PRIVATE_KEY"
-            exit 1
-          fi
-
+          test -n "${APT_GPG_PRIVATE_KEY:-}"
           export GNUPGHOME="$(mktemp -d)"
           chmod 700 "$GNUPGHOME"
           printf '%s\n' "$APT_GPG_PRIVATE_KEY" | gpg --batch --import
-
           key_id="$(gpg --batch --list-secret-keys --with-colons | awk -F: '/^sec:/ {print $5; exit}')"
           test -n "$key_id"
           echo "APT_KEY_ID=$key_id" >> "$GITHUB_ENV"
-
           gpg --batch --armor --export "$key_id" > site/apt.gpg
 
       - name: Build APT metadata
@@ -70,42 +61,17 @@ jobs:
           export GNUPGHOME="$(mktemp -d)"
           chmod 700 "$GNUPGHOME"
           printf '%s\n' "${{ secrets.APT_GPG_PRIVATE_KEY }}" | gpg --batch --import
-
           mkdir -p site/dists/stable/main/binary-amd64
-
-          dpkg-scanpackages --arch amd64 site/pool/main /dev/null \
-            > site/dists/stable/main/binary-amd64/Packages
-          gzip -9c site/dists/stable/main/binary-amd64/Packages \
-            > site/dists/stable/main/binary-amd64/Packages.gz
-
-          apt-ftparchive \
-            -o APT::FTPArchive::Release::Origin="Almezali" \
-            -o APT::FTPArchive::Release::Label="Conky Manager GTK" \
-            -o APT::FTPArchive::Release::Suite="stable" \
-            -o APT::FTPArchive::Release::Codename="stable" \
-            -o APT::FTPArchive::Release::Architectures="amd64" \
-            -o APT::FTPArchive::Release::Components="main" \
-            release site/dists/stable > site/dists/stable/Release
-
+          cd site
+          dpkg-scanpackages --arch amd64 pool/main /dev/null > dists/stable/main/binary-amd64/Packages
+          gzip -9c dists/stable/main/binary-amd64/Packages > dists/stable/main/binary-amd64/Packages.gz
+          apt-ftparchive -o APT::FTPArchive::Release::Origin="Almezali" -o APT::FTPArchive::Release::Label="Conky Manager GTK" -o APT::FTPArchive::Release::Suite="stable" -o APT::FTPArchive::Release::Codename="stable" -o APT::FTPArchive::Release::Architectures="amd64" -o APT::FTPArchive::Release::Components="main" release dists/stable > dists/stable/Release
           sign_args=(--batch --yes --pinentry-mode loopback)
-          if [ -n "${APT_GPG_PASSPHRASE:-}" ]; then
-            sign_args+=(--passphrase "${APT_GPG_PASSPHRASE}")
-          fi
-
-          gpg "${sign_args[@]}" --local-user "${APT_KEY_ID}" \
-            --clearsign --digest-algo SHA256 \
-            --output site/dists/stable/InRelease \
-            site/dists/stable/Release
-
-          gpg "${sign_args[@]}" --local-user "${APT_KEY_ID}" \
-            --armor --detach-sign --digest-algo SHA256 \
-            --output site/dists/stable/Release.gpg \
-            site/dists/stable/Release
-
-          touch site/.nojekyll
-
-          echo "APT repository generated:"
-          find site -maxdepth 4 -type f | sort
+          if [ -n "${APT_GPG_PASSPHRASE:-}" ]; then sign_args+=(--passphrase "${APT_GPG_PASSPHRASE}"); fi
+          gpg "${sign_args[@]}" --local-user "${APT_KEY_ID}" --clearsign --digest-algo SHA256 --output dists/stable/InRelease dists/stable/Release
+          gpg "${sign_args[@]}" --local-user "${APT_KEY_ID}" --armor --detach-sign --digest-algo SHA256 --output dists/stable/Release.gpg dists/stable/Release
+          touch .nojekyll
+          grep -E '^(Package|Version|Architecture|Filename):' dists/stable/main/binary-amd64/Packages || true
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
