@@ -98,7 +98,11 @@ jobs:
 
           mkdir -p site/dists/stable/main/binary-amd64
           cd site
-          dpkg-scanpackages --arch amd64 pool/main /dev/null > dists/stable/main/binary-amd64/Packages
+          dpkg-scanpackages pool/main /dev/null > /tmp/Packages.all
+          awk '
+            BEGIN { RS=""; ORS="\n\n" }
+            /(^|\n)Architecture: amd64(\n|$)/ { print }
+          ' /tmp/Packages.all > dists/stable/main/binary-amd64/Packages
           test -s dists/stable/main/binary-amd64/Packages
           grep -q '^Package: conky-manager-g$' dists/stable/main/binary-amd64/Packages
           gzip -9c dists/stable/main/binary-amd64/Packages > dists/stable/main/binary-amd64/Packages.gz
